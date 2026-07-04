@@ -1,0 +1,137 @@
+#cgpt-bulk-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 4px;
+  padding: 4px;
+  font-size: 10px;
+  flex-wrap: wrap;
+}
+
+#cgpt-bulk-toolbar button {
+  min-height: 26px;
+  padding: 0 10px;
+  border: 1px solid color-mix(in srgb, currentColor 16%, transparent);
+  border-radius: 6px;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+#cgpt-bulk-toolbar button:hover:not(:disabled) {
+  background: color-mix(in srgb, currentColor 8%, transparent);
+}
+
+#cgpt-bulk-toolbar button:disabled {
+  cursor: default;
+  opacity: 0.45;
+}
+
+#cgpt-bulk-toolbar .cgpt-bulk-danger {
+  background: #a94136;
+  border-color: #a94136;
+  color: #fff;
+  font-weight: 500;
+}
+
+#cgpt-bulk-toolbar .cgpt-bulk-danger:hover:not(:disabled) {
+  background: #92362d;
+  border-color: #92362d;
+}
+
+#cgpt-bulk-toolbar .cgpt-bulk-count {
+  margin-left: auto;
+  color: var(--text-secondary, currentColor);
+  white-space: nowrap;
+  opacity: 0.8;
+}
+
+a.cgpt-bulk-item {
+  position: relative;
+  padding-left: 34px !important;
+}
+
+a.cgpt-bulk-item.cgpt-bulk-selected {
+  background: color-mix(in srgb, #10a37f 16%, transparent);
+}
+
+.cgpt-bulk-checkbox {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  z-index: 2;
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  transform: translateY(-50%);
+  cursor: pointer;
+
+  /* 去掉系统默认白底黑框 */
+  appearance: none;
+  -webkit-appearance: none;
+  border: 1.5px solid color-mix(in srgb, currentColor 55%, transparent);
+  border-radius: 4px;
+  background: transparent;
+  transition: all 0.12s ease;
+
+  /* 白色外框：在暗色 sidebar 下提供清晰轮廓 */
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.85);
+}
+
+.cgpt-bulk-checkbox:hover {
+  border-color: color-mix(in srgb, currentColor 65%, transparent);
+}
+
+.cgpt-bulk-checkbox:checked {
+  background: #10a37f;
+  border-color: #10a37f;
+}
+
+/* 白色对勾 */
+.cgpt-bulk-checkbox:checked::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 1.5px 1.5px 0;
+  transform: rotate(45deg);
+}
+
+/* Toast 通知 */
+#cgpt-bulk-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99999;
+  max-width: 320px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: rgba(30, 30, 30, 0.92);
+  color: #fff;
+  font-size: 13px;
+  line-height: 1.4;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+#cgpt-bulk-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#cgpt-bulk-toast[data-type="success"] {
+  background: rgba(46, 125, 50, 0.95);
+}
+
+#cgpt-bulk-toast[data-type="error"] {
+  background: rgba(211, 47, 47, 0.95);
+}
